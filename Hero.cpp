@@ -1,6 +1,8 @@
 #include "Hero.h"
 #include "olcSimpleEngine.cpp"
 #include "main.cpp"
+#include "Bonus.h"
+
 
 
 Hero::Hero() {
@@ -15,14 +17,14 @@ Bullet Hero::shoot(ShootingGame game) {
 	return Bullet(this->objX, this->objY, dirX / dist, dirY / dist, 200, 1);
 }
 
-void bonusPickUp(Bonus bonus) {
-    if (this.hpcurr + bonus.amount < this.hpmax)
+void Hero::bonusPickUp(Bonus bonus) {
+    if (this->hpCurrent + bonus.amount < this->hpMax)
     {
-        this.hpcurr += bonus.amount;
+        this->hpCurrent += bonus.amount;
     }
     else
     {
-        this.hpcurr = this.hpmax;
+        this->hpCurrent = this->hpMax;
     }
     removeObject(bonus);
 }

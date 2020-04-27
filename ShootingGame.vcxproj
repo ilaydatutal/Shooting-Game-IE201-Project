@@ -123,16 +123,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bonus.cpp" />
+    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="LivingObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NonLivingObject.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="olcSimpleEngine.cpp" />
+    <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bonus.h" />
+    <ClInclude Include="Hero.h" />
     <ClInclude Include="LivingObject.h" />
+    <ClInclude Include="NonLivingObject.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="olcPGEX_Graphics2D.h" />
     <ClInclude Include="olcSimpleEngine.h" />
+    <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

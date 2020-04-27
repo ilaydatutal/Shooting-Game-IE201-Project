@@ -2,7 +2,7 @@
 #include "main.cpp"
 #include "Hero.h"
 Object::Object(double x, double y, double speed, double dirX = NULL, double dirY = NULL) {
-	//this->objX = x;
+	this->objX = x;
 	this->objY = y;
 	this->speed = speed;
 	this->dirX = dirX;
