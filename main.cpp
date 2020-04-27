@@ -119,7 +119,7 @@ public:
         y = ScreenHeight() / 2;
         heroSpeed = 100;
         
-        spawnRate = 5;
+        spawnRate = 5; //zombie spawn rate
         spawnCD = 0;
         
         hpmax = 100;
@@ -131,7 +131,7 @@ public:
         for (int i = 0; i < 7; ++i)
             levelSprites.push_back(make_shared<olc::Sprite>("Sprites/Level" + to_string(i + 1) + ".png"));
 
-        srand(NULL);
+        srand(NULL); //?????
         return true;
     }
 
@@ -162,7 +162,7 @@ public:
         level = int(gameTime / 10) % 7 + 1;
         
         
-        //ZOMBIE SPAWNS
+        //ZOMBIE SPAWNS   //class shooting game
         spawnCD -= fElapsedTime;
         if (spawnCD <= 0)
         {
@@ -173,7 +173,7 @@ public:
         //ZOMBIE SPAWNS
         
         
-        //SHOOTING
+        //SHOOTING  //hero'da
         if (GetKey(olc::SPACE).bPressed)
         {
             double dirX = GetMouseX() - x;
@@ -184,7 +184,7 @@ public:
         //SHOOTING
 
 
-        //UPDATE VARIABLES
+        //UPDATE VARIABLES   //hero'da
         if (GetKey(olc::W).bHeld)
             y -= fElapsedTime * heroSpeed;
         if (GetKey(olc::S).bHeld)
@@ -195,7 +195,7 @@ public:
             x -= fElapsedTime * heroSpeed;
         //UPDATE VARIABLES
 
-        //KEEP HERO IN WINDOW
+        //KEEP HERO IN WINDOW   // hero'da
         if (y <= 0) { y = 0; }
         if (x <= 0) { x = 0; }
         if (y >= ScreenHeight()-1) { y = ScreenHeight()-1; }
@@ -203,7 +203,7 @@ public:
         //KEEP HERO IN WINDOW
 
 
-        //BULLETSMOVE
+        //BULLETSMOVE  //bullet'da
         for (int i = 0 ; i < bullets.size() ; ++i)
         {
             bullets[i].x += bullets[i].dirX * bullets[i].speed * fElapsedTime;
@@ -217,7 +217,7 @@ public:
         //BULLETSMOVE
 
 
-        //BULLETSHIT
+        //BULLETSHIT  //zombie ile bullet arasýndaki relation???
         for (int i = 0; i < bullets.size(); ++i)
         {
             for (int j = 0; j < enemies.size(); ++j)
@@ -246,7 +246,7 @@ public:
         }
         //BULLETSHIT
 
-        //BONUS PICK UP
+        //BONUS PICK UP   //hero'da  bonusu alma ve bonusun alýnmasý iki ayrý function mýdýr?????????????????????????????????????????????
 
         for (int i =0 ; i< bonuses.size(); i++)
         {
@@ -279,7 +279,7 @@ public:
 
 
 
-        //ENEMIESMOVE
+        //ENEMIESMOVE  //zombie'de
         for (int i = 0; i < enemies.size(); ++i)
         {
             double dirX =  x - enemies[i].x;
