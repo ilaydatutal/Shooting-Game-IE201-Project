@@ -7,6 +7,7 @@
 #include "olcSimpleEngine.h"
 #include "olcPGEX_Graphics2D.h"
 #include "vector"
+#include "Hero.h"
 #define PI 3.14159265359
 using namespace std;
 
@@ -94,6 +95,7 @@ class ShootingGame : public olc::PixelGameEngine
     double gameTime;
     bool gameEnd;
 
+    //burayý aynen kopyaladým livingobject e yani silincek burasý
     void DrawHPBar(int x, int y, int HPMax, int HPCurrent)
     {
         double ratio = (double)(HPCurrent) / (double)HPMax;
@@ -176,10 +178,8 @@ public:
         //SHOOTING  //hero'da
         if (GetKey(olc::SPACE).bPressed)
         {
-            double dirX = GetMouseX() - x;
-            double dirY = GetMouseY() - y;
-            double dist = sqrt((dirX * dirX) + (dirY * dirY));
-            bullets.push_back(Bullet(x, y, dirX / dist , dirY / dist, 200, 1));
+           
+            bullets.push_back(hero.shoot());
         }
         //SHOOTING
 
@@ -203,7 +203,11 @@ public:
         //KEEP HERO IN WINDOW
 
 
-        //BULLETSMOVE  //bullet'da
+        //BULLETS
+        
+        
+        
+        //bullet'da
         for (int i = 0 ; i < bullets.size() ; ++i)
         {
             bullets[i].x += bullets[i].dirX * bullets[i].speed * fElapsedTime;
@@ -270,7 +274,6 @@ public:
         }
 
         //BONUS PICK UP
-
 
 
 
@@ -356,6 +359,7 @@ public:
         t.Rotate(atan2((GetMouseX()-x),(GetMouseY() - y)) - PI / 2);
         t.Translate(x, y );
         olc::GFX2D::DrawSprite(manSprite.get(), t);
+        this->DrawSprite
       
         
         //CROSSHAIR

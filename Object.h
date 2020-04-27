@@ -4,6 +4,7 @@ using namespace std;
 
 class Object
 {
+public :
 	double objX;
 	double objY;
 	double dirX;
@@ -12,8 +13,8 @@ class Object
 	static shared_ptr<olc::Sprite> sprite;
 
 public:
-	Object();
+	Object(double x, double y, double speed, double dirX = NULL, double dirY = NULL);
 	void move(float elapsedTime, double directionX = NULL, double directionY = NULL, Hero hero = NULL);
-	void draw();
+	void draw(ShootingGame game);
 };
 
