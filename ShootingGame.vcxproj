@@ -131,6 +131,7 @@
     <ClCompile Include="NonLivingObject.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="olcSimpleEngine.cpp" />
+    <ClCompile Include="ShootingGame.cpp" />
     <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="olcPGEX_Graphics2D.h" />
     <ClInclude Include="olcSimpleEngine.h" />
+    <ClInclude Include="ShootingGame.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

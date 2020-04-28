@@ -1,5 +1,4 @@
 #include "Object.h"
-#include "main.cpp"
 #include "Hero.h"
 using namespace std;
 

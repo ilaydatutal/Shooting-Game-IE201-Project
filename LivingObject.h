@@ -1,5 +1,7 @@
 #pragma once
 #include "Object.h"
+#include "ShootingGame.h"
+
 using namespace std;
 
 class LivingObject :

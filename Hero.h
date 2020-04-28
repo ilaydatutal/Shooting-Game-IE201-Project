@@ -1,9 +1,7 @@
 #pragma once
-using namespace std;
-#include "LivingObject.h"
-#include "main.cpp"
 #include "Bonus.h"
-
+#include "ShootingGame.h"
+using namespace std;
 
 class Hero : public LivingObject
 {
@@ -13,6 +11,6 @@ public:
 	void move(ShootingGame* game, float fElapsedTime, olc::Key pressedKey);
 	Bullet shoot(ShootingGame* game);
 	void bonusPickUp(Bonus bonus);
-	
+
 };
 
