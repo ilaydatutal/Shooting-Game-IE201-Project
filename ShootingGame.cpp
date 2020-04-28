@@ -80,7 +80,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	//SHOOTING  //hero'da
 	if (GetKey(olc::SPACE).bPressed)
 	{
-		bullets.push_back(shoot(&hero));
+		bullets.push_back(shoot(hero));
 	}
 	//SHOOTING
 
@@ -301,10 +301,10 @@ double ShootingGame::distance(double x1, double y1, double x2, double y2)
 	return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
 
-Bullet ShootingGame::shoot(Hero* hero) {
+Bullet ShootingGame::shoot(Hero hero) {
 
-	double dirX = GetMouseX() - hero->objX;
-	double dirY = GetMouseY() - hero->objY;
+ 	double dirX = GetMouseX() - hero.objX;
+	double dirY = GetMouseY() - hero.objY;
 	double dist = sqrt((dirX * dirX) + (dirY * dirY));
-	return Bullet(hero->objX, hero->objY, dirX / dist, dirY / dist, 200, 1);
+	return Bullet(hero.objX, hero.objY, dirX / dist, dirY / dist, 200, 1);
 }
