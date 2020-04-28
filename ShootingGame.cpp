@@ -67,7 +67,6 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 
 	//ZOMBIE SPAWNS   //class shooting game
 	spawnCooldown -= fElapsedTime;
-	cout << spawnCooldown << endl;
 	if (spawnCooldown <= 0)
 	{
 		double degree = rand() * 360;
