@@ -14,7 +14,7 @@ Zombie::Zombie(double xIn, double yIn, double speedIn, double damageIn, double h
 	this->damage = damageIn;
 	this->hpMax = hpIn;
 	this->hpCurrent = this->hpMax;
-	this->sprite = make_shared<olc::Sprite>("Sprites/zombie.png");
+	//this->sprite = make_shared<olc::Sprite>("Sprites/zombie.png");
 }
 
 void Zombie::attack(Hero hero, float fElapsedTime)

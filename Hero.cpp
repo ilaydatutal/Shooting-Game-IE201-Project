@@ -7,7 +7,7 @@ Hero::Hero() :LivingObject()
 
 Hero::Hero(double x, double y, double speed, double hpMax) : LivingObject(x, y, speed, hpMax, hpMax / 2) {
 
-	this->sprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
+	//this->sprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
 }
 
 void Hero::move(double screenHeight, double screenWidth, float fElapsedTime, olc::Key pressedKey) {
