@@ -49,6 +49,7 @@ struct Bonus {
 };
 */
 
+/*
 struct Enemy {
     double x;
     double y;
@@ -69,6 +70,7 @@ struct Enemy {
         hp = hpmax;
     }
 };
+*/
 
 double distance(double x1, double y1 , double x2, double y2)
 {
@@ -90,7 +92,7 @@ class ShootingGame : public olc::PixelGameEngine
     
 
     vector<Bullet> bullets;
-    vector<Enemy> enemies;
+    vector<Zombie> zombies;
     vector<Bonus> bonuses;
     
     shared_ptr<olc::Sprite> bonusSprite;
@@ -181,7 +183,7 @@ public:
         if (spawnCD <= 0)
         {
             double degree = rand() * 360;
-            enemies.push_back(Enemy((cos(degree) * ScreenWidth()) + (ScreenWidth() / 2), (sin(degree) * ScreenHeight()) +  (ScreenHeight() / 2),50,10,10));
+            zombies.push_back(Zombie((cos(degree) * ScreenWidth()) + (ScreenWidth() / 2), (sin(degree) * ScreenHeight()) +  (ScreenHeight() / 2),50,10,10));
             spawnCD = spawnRate;
         }
         //ZOMBIE SPAWNS
@@ -240,24 +242,24 @@ public:
         //BULLETSHIT 
         for (int i = 0; i < bullets.size(); ++i)
         {
-            for (int j = 0; j < enemies.size(); ++j)
+            for (int j = 0; j < zombies.size(); ++j)
             {
-                if (distance(bullets[i].x, bullets[i].y, enemies[j].x, enemies[j].y) < 10)
+                if (distance(bullets[i].x, bullets[i].y, zombies[j].x, zombies[j].y) < 10)
                 {
-                    enemies[j].hp -= bullets[i].damage;
+                    zombies[j].hp -= bullets[i].damage;
                     bullets.erase(bullets.begin() + i);
                     i--;
-                    if(enemies[j].hp <= 0)
+                    if(zombies[j].hp <= 0)
                     {
                         //RANDOM BONUS CREATION
 
                         if ( rand()%5 < 1 ) {
                         
-                            bonuses.push_back(Bonus(enemies[j].x, enemies[j].y, 20));
+                            bonuses.push_back(Bonus(zombies[j].x, zombies[j].y, 20));
                         }
                         //RANDOM BONUS CREATION
 
-                        enemies.erase(enemies.begin() + j);
+                        zombies.erase(zombies.begin() + j);
                         j--;
                     }
                     break;
@@ -292,7 +294,7 @@ public:
 
 
         //ENEMIESMOVE  //zombie'de
-        for (int i = 0; i < enemies.size(); ++i)
+        for (int i = 0; i < zombies.size(); ++i)
         {
      /*       double dirX =  x - enemies[i].x;
             double dirY =  y - enemies[i].y;
@@ -301,23 +303,23 @@ public:
             enemies[i].y += dirY / dist * enemies[i].speed * fElapsedTime;
             */
             
-            if (enemies[i].hp <= 0)
+            if (zombies[i].hp <= 0)
             {
-                enemies.erase(enemies.begin() + i);
+                zombies.erase(zombies.begin() + i);
                 i--;
             }
         }
         //ENEMIESMOVE
 
         //ENEMIESATTACK
-        for (int i = 0; i < enemies.size(); i++)
+        for (int i = 0; i < zombies.size(); i++)
         {
-            enemies[i].attackCD -= fElapsedTime;
+            zombies[i].attackCD -= fElapsedTime;
 
-            if ((distance(enemies[i].x, enemies[i].y, x, y) <= 8) && (enemies[i].attackCD <= 0))
+            if ((distance(zombies[i].x, zombies[i].y, x, y) <= 8) && (zombies[i].attackCD <= 0))
             {
-                hpcurr -= enemies[i].damage;
-                enemies[i].attackCD = enemies[i].attackrate;
+                hpcurr -= zombies[i].damage;
+                zombies[i].attackCD = zombies[i].attackrate;
             }
         }
 
@@ -330,9 +332,9 @@ public:
         if (hpcurr<=0 || GetKey(olc::E).bReleased)
         {
 
-            for (int i = 0; i < enemies.size(); i++)
+            for (int i = 0; i < zombies.size(); i++)
             {
-                enemies.erase(enemies.begin());
+                zombies.erase(zombies.begin());
                 i--;
             }
 
@@ -383,7 +385,7 @@ public:
             DrawCircle(a.x, a.y, 1,olc::YELLOW);
         
         //DRAW ENEMIES
-        for (auto a : enemies) {
+        for (auto a : zombies) {
             DrawSprite(a.x-12,a.y-12,zombieSprite,1);
             //DrawCircle(a.x, a.y, 1, olc::RED);
             DrawHPBar(a.x, a.y, a.hpmax , a.hp);
