@@ -1,6 +1,5 @@
 #pragma once
 #include "olcSimpleEngine.h"
-#include "main.cpp"
 using namespace std;
 
 class Object

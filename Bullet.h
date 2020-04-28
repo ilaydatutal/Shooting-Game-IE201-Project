@@ -1,6 +1,7 @@
 #pragma once
 #include "NonLivingObject.h"
 #include "Zombie.h"
+using namespace std;
 class Bullet: public NonLivingObject
 {
 public:

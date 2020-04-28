@@ -394,11 +394,11 @@ public:
 		//DRAW BONUSES
 		for (auto a : bonuses)
 		{
-			DrawSprite(a.x - 10, a.y - 10, bonusSprite, 1);
+			DrawSprite(a.objX - 10, a.objY - 10, bonusSprite, 1);
 		}
 
 		//DRAW HP BAR
-		DrawHPBar(x, y - 20, hpmax, hpcurr);
+		hero.DrawHPBar(this);
 
 		//DRAWING
 		return true;

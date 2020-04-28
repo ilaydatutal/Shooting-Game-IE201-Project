@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+using namespace std;
 class NonLivingObject: public Object
 {
 public:
