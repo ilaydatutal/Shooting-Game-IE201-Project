@@ -18,7 +18,7 @@ void Zombie::attack(Hero hero, float fElapsedTime)
 {
 
 	this->attackCD -= fElapsedTime;
-	this->hpCurrent -= this->damage;
+	hero.hpCurrent -= this->damage;
 	this->attackCD = this->attackrate;
 	
 }

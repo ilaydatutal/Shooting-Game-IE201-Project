@@ -6,7 +6,7 @@ Hero::Hero(double x, double y, double speed, double hpMax) :LivingObject(x, y, s
 	this->sprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
 }
 
-void Hero::move(ShootingGame* game, float fElapsedTime, olc::Key pressedKey) {
+void Hero::move(double screenHeight, double screenWidth, float fElapsedTime, olc::Key pressedKey) {
 	if (olc::W == pressedKey)
 		this->objY -= fElapsedTime * this->speed;
 	if (olc::S == pressedKey)
@@ -18,17 +18,10 @@ void Hero::move(ShootingGame* game, float fElapsedTime, olc::Key pressedKey) {
 
 	if (this->objY <= 0) { this->objY = 0; }
 	if (this->objX <= 0) { this->objX = 0; }
-	if (this->objY >= game->ScreenHeight() - 1) { this->objY = game->ScreenHeight() - 1; }
-	if (this->objX >= game->ScreenWidth() - 1) { this->objX = game->ScreenWidth() - 1; }
+	if (this->objY >= screenHeight - 1) { this->objY = screenHeight - 1; }
+	if (this->objX >= screenWidth - 1) { this->objX = screenWidth - 1; }
 }
 
-Bullet Hero::shoot(ShootingGame* game) {
-
-	double dirX = game->GetMouseX() - this->objX;
-	double dirY = game->GetMouseY() - this->objY;
-	double dist = sqrt((dirX * dirX) + (dirY * dirY));
-	return Bullet(this->objX, this->objY, dirX / dist, dirY / dist, 200, 1);
-}
 
 void Hero::bonusPickUp(Bonus bonus) {
 	if (this->hpCurrent + bonus.amount < this->hpMax)

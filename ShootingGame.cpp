@@ -1,34 +1,36 @@
 #include "ShootingGame.h"
 
+#define PI 3.14159265359
+
 bool ShootingGame::OnUserCreate()
 {
-	
-		hero = Hero(ScreenWidth() / 2, ScreenHeight() / 2, 100, 100);
-		manSprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
-		deadSprite = make_shared<olc::Sprite>("Sprites/Dead.png");
-		zombieSprite = make_shared<olc::Sprite>("Sprites/zombie.png");
-		bonusSprite = make_shared<olc::Sprite>("Sprites/firstaid.png");
 
-		/*x = ScreenWidth() / 2;
-		y = ScreenHeight() / 2;
-		heroSpeed = 100;
-		*/
-		/*
-		  spawnRate = 5; //zombie spawn rate
-		  spawnCD = 0;
-		  */
-		  /*  hpmax = 100;
-			hpcurr = 50;*/
+	hero = Hero(ScreenWidth() / 2, ScreenHeight() / 2, 100, 100);
+	manSprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
+	deadSprite = make_shared<olc::Sprite>("Sprites/Dead.png");
+	zombieSprite = make_shared<olc::Sprite>("Sprites/zombie.png");
+	bonusSprite = make_shared<olc::Sprite>("Sprites/firstaid.png");
 
-		gameTime = 0;
-		gameEnd = false;
+	/*x = ScreenWidth() / 2;
+	y = ScreenHeight() / 2;
+	heroSpeed = 100;
+	*/
+	/*
+	  spawnRate = 5; //zombie spawn rate
+	  spawnCD = 0;
+	  */
+	  /*  hpmax = 100;
+		hpcurr = 50;*/
 
-		for (int i = 0; i < 7; ++i)
-			levelSprites.push_back(make_shared<olc::Sprite>("Sprites/Level" + to_string(i + 1) + ".png"));
+	gameTime = 0;
+	gameEnd = false;
 
-		srand(NULL);
-		return true;
-	
+	for (int i = 0; i < 7; ++i)
+		levelSprites.push_back(make_shared<olc::Sprite>("Sprites/Level" + to_string(i + 1) + ".png"));
+
+	srand(NULL);
+	return true;
+
 }
 
 bool ShootingGame::OnUserUpdate(float fElapsedTime)
@@ -72,20 +74,22 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	//SHOOTING  //hero'da
 	if (GetKey(olc::SPACE).bPressed)
 	{
-		bullets.push_back(hero.shoot(this));
+		bullets.push_back(shoot(&hero));
 	}
 	//SHOOTING
 
 
 	//UPDATE VARIABLES   
+	double screenWidth = ScreenWidth();
+	double screenHeight = ScreenHeight();
 	if (GetKey(olc::W).bHeld)
-		hero.move(this, fElapsedTime, olc::W);
+		hero.move(screenHeight, screenWidth, fElapsedTime, olc::W);
 	if (GetKey(olc::S).bHeld)
-		hero.move(this, fElapsedTime, olc::S);
+		hero.move(screenHeight, screenWidth, fElapsedTime, olc::S);
 	if (GetKey(olc::D).bHeld)
-		hero.move(this, fElapsedTime, olc::D);
+		hero.move(screenHeight, screenWidth, fElapsedTime, olc::D);
 	if (GetKey(olc::A).bHeld)
-		hero.move(this, fElapsedTime, olc::A);
+		hero.move(screenHeight, screenWidth, fElapsedTime, olc::A);
 	//UPDATE VARIABLES
 
 	////KEEP HERO IN WINDOW   // hero'da
@@ -267,7 +271,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	for (auto a : zombies) {
 		DrawSprite(a.objX - 12, a.objY - 12, zombieSprite, 1);
 		//DrawCircle(a.x, a.y, 1, olc::RED);
-		a.DrawHPBar(this);
+		DrawHPBar(a);
 		//DrawHPBar(a.x, a.y, a.hpmax, a.hp);
 	}
 
@@ -278,8 +282,34 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	}
 
 	//DRAW HP BAR
-	hero.DrawHPBar(this);
+	DrawHPBar(hero);
 
 	//DRAWING
 	return true;
+}
+
+void ShootingGame::DrawHPBar(LivingObject livingObj)
+{
+
+	double ratio = (double)(livingObj.hpCurrent) / (double)livingObj.hpMax;
+	for (int i = livingObj.objX - 5; i < 5 + livingObj.objX; ++i)
+		if (i < livingObj.objX - 5 + ratio * 10)
+			DrawRect(i, livingObj.objY + 14, 1, 1, olc::GREEN);
+		else
+			DrawRect(i, livingObj.objY + 14, 1, 1, olc::RED);
+
+
+}
+
+double distance(double x1, double y1, double x2, double y2)
+{
+	return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+}
+
+Bullet ShootingGame::shoot(Hero* hero) {
+
+	double dirX = GetMouseX() - hero->objX;
+	double dirY = GetMouseY() - hero->objY;
+	double dist = sqrt((dirX * dirX) + (dirY * dirY));
+	return Bullet(hero->objX, hero->objY, dirX / dist, dirY / dist, 200, 1);
 }

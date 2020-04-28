@@ -58,6 +58,12 @@ public:
 	
 
 	bool OnUserUpdate(float fElapsedTime); //override
+
+	void DrawHPBar(LivingObject livingObj);
+
+	double distance(double x1, double y1, double x2, double y2);
+
+	Bullet shoot(Hero* hero);
 	
 
 

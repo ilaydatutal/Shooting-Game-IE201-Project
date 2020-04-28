@@ -1,6 +1,5 @@
 #pragma once
 using namespace std;
-#include "LivingObject.h"
 #include "Hero.h"
 
 class Zombie : public LivingObject
