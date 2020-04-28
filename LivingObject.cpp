@@ -8,7 +8,7 @@ LivingObject::LivingObject(double x, double y, double speed, double hpMax, doubl
 	this->hpCurrent = hpCurrent;
 }
 
-void LivingObject::DrawHPBar(ShootingGame game)
+void LivingObject::DrawHPBar(ShootingGame* game)
 {
 	double ratio = (double)(this->hpCurrent) / (double)this->hpMax;
 	for (int i = this->objX - 5; i < 5 + this->objX; ++i)

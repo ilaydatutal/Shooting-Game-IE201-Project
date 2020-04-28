@@ -9,8 +9,8 @@ public:
 	double damage;
 	double attackCD;
 	double attackrate;
-	double spawnRate;
-	double spawnCD;
+	static double spawnRate;
+	static double spawnCooldown;
 
 	Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn);
 	void attack(Hero hero, float elapsedTime);

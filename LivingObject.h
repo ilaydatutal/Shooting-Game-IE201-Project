@@ -12,6 +12,6 @@ public:
 
 public:
 	LivingObject(double x, double y, double speed, double hpMax, double hpCurrent, double dirX = NULL, double dirY = NULL);
-	void DrawHPBar(ShootingGame game);
+	void DrawHPBar(ShootingGame* game);
 };
 

@@ -22,10 +22,10 @@ void Hero::move(ShootingGame* game, float fElapsedTime, olc::Key pressedKey) {
 	if (this->objX >= game->ScreenWidth() - 1) { this->objX = game->ScreenWidth() - 1; }
 }
 
-Bullet Hero::shoot(ShootingGame game) {
+Bullet Hero::shoot(ShootingGame* game) {
 
-	double dirX = game.GetMouseX() - this->objX;
-	double dirY = game.GetMouseY() - this->objY;
+	double dirX = game->GetMouseX() - this->objX;
+	double dirY = game->GetMouseY() - this->objY;
 	double dist = sqrt((dirX * dirX) + (dirY * dirY));
 	return Bullet(this->objX, this->objY, dirX / dist, dirY / dist, 200, 1);
 }
