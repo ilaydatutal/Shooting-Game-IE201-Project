@@ -38,6 +38,7 @@ class ShootingGame : public olc::PixelGameEngine
 	int level;
 	double gameTime;
 	bool gameEnd;
+	double spawnCooldown;
 
 	/*
 	void DrawHPBar(int x, int y, int HPMax, int HPCurrent)

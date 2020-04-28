@@ -1,5 +1,4 @@
 #include "Zombie.h"
-double Zombie::spawnCooldown = 0;
 double Zombie::spawnRate = 5;
 Zombie::Zombie() :LivingObject()
 {

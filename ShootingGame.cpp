@@ -15,6 +15,7 @@ bool ShootingGame::OnUserCreate()
 	zombieSprite = make_shared<olc::Sprite>("Sprites/zombie.png");
 	bonusSprite = make_shared<olc::Sprite>("Sprites/firstaid.png");
 
+	spawnCooldown = 0;
 	/*x = ScreenWidth() / 2;
 	y = ScreenHeight() / 2;
 	heroSpeed = 100;
@@ -65,12 +66,13 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 
 
 	//ZOMBIE SPAWNS   //class shooting game
-	Zombie::spawnCooldown -= fElapsedTime;
-	if (Zombie::spawnCooldown <= 0)
+	spawnCooldown -= fElapsedTime;
+	cout << spawnCooldown << endl;
+	if (spawnCooldown <= 0)
 	{
 		double degree = rand() * 360;
 		zombies.push_back(Zombie((cos(degree) * ScreenWidth()) + (ScreenWidth() / 2), (sin(degree) * ScreenHeight()) + (ScreenHeight() / 2), 50, 10, 10));
-		Zombie::spawnCooldown = Zombie::spawnRate;
+		spawnCooldown = Zombie::spawnRate;
 	}
 	//ZOMBIE SPAWNS
 
@@ -176,20 +178,10 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 
 
 
-
-
-
-
-
 	//ENEMIESMOVE  //zombie'de
 	for (int i = 0; i < zombies.size(); ++i)
 	{
-		/*       double dirX =  x - enemies[i].objX;
-			   double dirY =  y - enemies[i].objY;
-			   double dist = sqrt((dirX * dirX) + (dirY * dirY));
-			   enemies[i].objX += dirX / dist * enemies[i].speed * fElapsedTime;
-			   enemies[i].objY += dirY / dist * enemies[i].speed * fElapsedTime;
-			   */
+		zombies[i].move(hero, fElapsedTime);
 
 		if (zombies[i].hpCurrent <= 0)
 		{
@@ -274,9 +266,8 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	//DRAW ENEMIES
 	for (auto a : zombies) {
 		DrawSprite(a.objX - 12, a.objY - 12, zombieSprite, 1);
-		//DrawCircle(a.x, a.y, 1, olc::RED);
+		DrawCircle(a.objX, a.objY, 1, olc::RED);
 		DrawHPBar(a);
-		//DrawHPBar(a.x, a.y, a.hpmax, a.hp);
 	}
 
 	//DRAW BONUSES

@@ -9,7 +9,6 @@ public:
 	double attackCD;
 	double attackrate;
 	static double spawnRate;
-	static double spawnCooldown;
 
 	Zombie();
 	Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn);
