@@ -1,15 +1,19 @@
 #include "LivingObject.h"
-#include "main.cpp"
 
-LivingObject::LivingObject() {
+using namespace std;
 
+LivingObject::LivingObject(double x, double y, double speed, double hpMax, double hpCurrent, double dirX, double dirY) :Object(x, y, speed, dirX, dirY)
+{
+	this->hpMax = hpMax;
+	this->hpCurrent = hpCurrent;
 }
 
-void DrawHPBar(int x, int y, int HPMax, int HPCurrent, ShootingGame game) {
-    double ratio = (double)(HPCurrent) / (double)HPMax;
-    for (int i = x - 5; i < 5 + x; ++i)
-        if (i < x - 5 + ratio * 10)
-            game.DrawRect(i, y + 14, 1, 1, olc::GREEN);
-        else
-            game.DrawRect(i, y + 14, 1, 1, olc::RED);
+void LivingObject::DrawHPBar(ShootingGame game)
+{
+	double ratio = (double)(this->hpCurrent) / (double)this->hpMax;
+	for (int i = this->objX - 5; i < 5 + this->objX; ++i)
+		if (i < this->objX - 5 + ratio * 10)
+			game.DrawRect(i, this->objY + 14, 1, 1, olc::GREEN);
+		else
+			game.DrawRect(i, this->objY + 14, 1, 1, olc::RED);
 }

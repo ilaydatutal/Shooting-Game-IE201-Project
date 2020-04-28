@@ -32,6 +32,7 @@ struct Bullet{
     }
 };
 
+/*
 struct Bonus {
     double x;
     double y;
@@ -43,6 +44,7 @@ struct Bonus {
     }
 
 };
+*/
 
 struct Enemy {
     double x;
@@ -186,13 +188,13 @@ public:
 
         //UPDATE VARIABLES   //hero'da
         if (GetKey(olc::W).bHeld)
-            y -= fElapsedTime * heroSpeed;
+            hero.move(this, fElapsedTime, olc::W);
         if (GetKey(olc::S).bHeld)
-            y += fElapsedTime* heroSpeed;
+            hero.move(this, fElapsedTime, olc::S);
         if (GetKey(olc::D).bHeld)
-            x += fElapsedTime * heroSpeed;
+            hero.move(this, fElapsedTime, olc::D);
         if (GetKey(olc::A).bHeld)
-            x -= fElapsedTime * heroSpeed;
+            hero.move(this, fElapsedTime, olc::A);
         //UPDATE VARIABLES
 
         //KEEP HERO IN WINDOW   // hero'da
@@ -391,7 +393,10 @@ public:
         return true;
     }
 
+
 };
+
+
 
 int main()
 {

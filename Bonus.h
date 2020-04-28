@@ -4,6 +4,6 @@ class Bonus : public NonLivingObject
 {
 public:
 	double amount;
-	Bonus(double xIn, double yIn);
+	Bonus(double xIn, double yIn, double amount);
 };
 

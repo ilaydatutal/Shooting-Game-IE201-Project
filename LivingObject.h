@@ -1,16 +1,17 @@
 #pragma once
-//#include "olcSimpleEngine.h"
-#include "Object.h""
+#include "Object.h"
 using namespace std;
 
-class LivingObject: public Object
+class LivingObject :
+	public Object
 {
+
 public:
 	double hpMax;
 	double hpCurrent;
 
 public:
-	LivingObject();
-	void DrawHPBar(int x, int y, int HPMax, int HPCurrent);
+	LivingObject(double x, double y, double speed, double hpMax, double hpCurrent, double dirX = NULL, double dirY = NULL);
+	void DrawHPBar(ShootingGame game);
 };
 
