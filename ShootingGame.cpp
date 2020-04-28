@@ -2,6 +2,10 @@
 
 #define PI 3.14159265359
 
+ShootingGame::ShootingGame()
+{
+}
+
 bool ShootingGame::OnUserCreate()
 {
 

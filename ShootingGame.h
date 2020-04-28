@@ -54,6 +54,7 @@ class ShootingGame : public olc::PixelGameEngine
 
 
 public:
+	ShootingGame();
 	bool OnUserCreate(); //override
 	
 

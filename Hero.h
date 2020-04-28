@@ -8,6 +8,7 @@ class Hero : public LivingObject
 {
 
 public:
+	Hero();
 	Hero(double x, double y, double speed, double hpMax);
 	void move(double screenHeight, double screenWidth, float fElapsedTime, olc::Key pressedKey);
 	void bonusPickUp(Bonus bonus);

@@ -4,6 +4,7 @@ using namespace std;
 class NonLivingObject: public Object
 {
 public:
+	NonLivingObject();
 	NonLivingObject(double x, double y, double speed, double dirX = NULL, double dirY = NULL);
 };
 
