@@ -3,28 +3,15 @@
 
 using namespace std;
 
-Bullet::Bullet(double xIn, double yIn, double dirXIn, double dirYIn, double speedIn, double damageIn) {
-    this->objX = xIn;
-    this->objY = yIn;
-    this->dirX = dirXIn;
-    this->dirY = dirYIn;
-    this->speed = speedIn;
-    this->damage = damageIn;
+Bullet::Bullet(double x, double y, double speed, double dirX, double dirY, double damage) : NonLivingObject(x, y, speed, dirX, dirY) {
+	this->damage = damage;
 }
 
 void Bullet::hit(Zombie zombie) {
-    zombie.hpCurrent -= this->damage;
-    removeObject(this);
-    if (zombie.hpCurrent <= 0)
-    {
-        //RANDOM BONUS CREATION
+	zombie.hpCurrent -= this->damage;
+}
 
-        if (rand() % 5 < 1) {
-
-            bonuses.push_back(Bonus(zombie.objX, zombie.objY));
-        }
-        //RANDOM BONUS CREATION
-
-        removeObject(zombie);
-    }
+void Bullet::move(float fElapsedTime) {
+	this->objX += this->dirX * this->speed * fElapsedTime;
+	this->objY += this->dirY * this->speed * fElapsedTime;
 }

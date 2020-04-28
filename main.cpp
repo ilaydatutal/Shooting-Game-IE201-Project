@@ -8,29 +8,32 @@
 #include "olcPGEX_Graphics2D.h"
 #include "vector"
 #include "Hero.h"
+#include "Bullet.h"
+#include "Bonus.h"
+
 #define PI 3.14159265359
 using namespace std;
 
 
 
 
-struct Bullet{
-    double x;
-    double y;
-    double dirX;
-    double dirY;
-    double speed;
-    double damage;
-    Bullet(double xIn, double yIn, double dirXIn, double dirYIn, double speedIn, double damageIn)
-    {
-        x = xIn;
-        y = yIn;
-        dirX = dirXIn;
-        dirY = dirYIn;
-        speed = speedIn;
-        damage = damageIn;
-    }
-};
+//struct Bullet{
+//    double x;
+//    double y;
+//    double dirX;
+//    double dirY;
+//    double speed;
+//    double damage;
+//    Bullet(double xIn, double yIn, double dirXIn, double dirYIn, double speedIn, double damageIn)
+//    {
+//        x = xIn;
+//        y = yIn;
+//        dirX = dirXIn;
+//        dirY = dirYIn;
+//        speed = speedIn;
+//        damage = damageIn;
+//    }
+//};
 
 /*
 struct Bonus {
@@ -74,6 +77,7 @@ double distance(double x1, double y1 , double x2, double y2)
 
 class ShootingGame : public olc::PixelGameEngine
 {
+    /*
     double x;
     double y;
     double heroSpeed;
@@ -81,6 +85,9 @@ class ShootingGame : public olc::PixelGameEngine
     double hpcurr;
     double spawnRate;
     double spawnCD;
+    */
+
+    
 
     vector<Bullet> bullets;
     vector<Enemy> enemies;
@@ -97,7 +104,7 @@ class ShootingGame : public olc::PixelGameEngine
     double gameTime;
     bool gameEnd;
 
-    //burayý aynen kopyaladým livingobject e yani silincek burasý
+    /*
     void DrawHPBar(int x, int y, int HPMax, int HPCurrent)
     {
         double ratio = (double)(HPCurrent) / (double)HPMax;
@@ -107,27 +114,28 @@ class ShootingGame : public olc::PixelGameEngine
             else
                 DrawRect(i, y + 14, 1,1, olc::RED);
     }
-
+    */
 
 
 
 public:
     bool OnUserCreate() //override
     {
+        Hero hero(ScreenWidth() / 2, ScreenHeight() / 2, 100, 100);
         manSprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
         deadSprite = make_shared<olc::Sprite>("Sprites/Dead.png");
         zombieSprite = make_shared<olc::Sprite>("Sprites/zombie.png");
         bonusSprite = make_shared<olc::Sprite>("Sprites/firstaid.png");
         
-        x = ScreenWidth() / 2;
+        /*x = ScreenWidth() / 2;
         y = ScreenHeight() / 2;
-        heroSpeed = 100;
+        heroSpeed = 100;*/
         
         spawnRate = 5; //zombie spawn rate
         spawnCD = 0;
         
-        hpmax = 100;
-        hpcurr = 50;
+      /*  hpmax = 100;
+        hpcurr = 50;*/
         
         gameTime = 0;
         gameEnd = false;
@@ -135,7 +143,7 @@ public:
         for (int i = 0; i < 7; ++i)
             levelSprites.push_back(make_shared<olc::Sprite>("Sprites/Level" + to_string(i + 1) + ".png"));
 
-        srand(NULL); //?????
+        srand(NULL); 
         return true;
     }
 
@@ -186,7 +194,7 @@ public:
         //SHOOTING
 
 
-        //UPDATE VARIABLES   //hero'da
+        //UPDATE VARIABLES   
         if (GetKey(olc::W).bHeld)
             hero.move(this, fElapsedTime, olc::W);
         if (GetKey(olc::S).bHeld)
@@ -197,12 +205,12 @@ public:
             hero.move(this, fElapsedTime, olc::A);
         //UPDATE VARIABLES
 
-        //KEEP HERO IN WINDOW   // hero'da
-        if (y <= 0) { y = 0; }
-        if (x <= 0) { x = 0; }
-        if (y >= ScreenHeight()-1) { y = ScreenHeight()-1; }
-        if (x >= ScreenWidth()-1) { x = ScreenWidth()-1; }
-        //KEEP HERO IN WINDOW
+        ////KEEP HERO IN WINDOW   // hero'da
+        //if (y <= 0) { y = 0; }
+        //if (x <= 0) { x = 0; }
+        //if (y >= ScreenHeight()-1) { y = ScreenHeight()-1; }
+        //if (x >= ScreenWidth()-1) { x = ScreenWidth()-1; }
+        ////KEEP HERO IN WINDOW
 
 
         //BULLETS
@@ -212,8 +220,12 @@ public:
         //bullet'da
         for (int i = 0 ; i < bullets.size() ; ++i)
         {
+            /*
             bullets[i].x += bullets[i].dirX * bullets[i].speed * fElapsedTime;
             bullets[i].y += bullets[i].dirY * bullets[i].speed * fElapsedTime;
+            */
+            bullets[i].move(fElapsedTime);
+            
             if (bullets[i].x < 0 || bullets[i].x > ScreenWidth() || bullets[i].y < 0 || bullets[i].y > ScreenHeight())
             {
                 bullets.erase(bullets.begin() + i);
@@ -223,7 +235,7 @@ public:
         //BULLETSMOVE
 
 
-        //BULLETSHIT  //zombie ile bullet arasýndaki relation???
+        //BULLETSHIT 
         for (int i = 0; i < bullets.size(); ++i)
         {
             for (int j = 0; j < enemies.size(); ++j)
@@ -239,7 +251,7 @@ public:
 
                         if ( rand()%5 < 1 ) {
                         
-                            bonuses.push_back(Bonus(enemies[j].x, enemies[j].y));
+                            bonuses.push_back(Bonus(enemies[j].x, enemies[j].y, 20));
                         }
                         //RANDOM BONUS CREATION
 
@@ -252,21 +264,14 @@ public:
         }
         //BULLETSHIT
 
-        //BONUS PICK UP   //hero'da  bonusu alma ve bonusun alýnmasý iki ayrý function mýdýr?????????????????????????????????????????????
+        //BONUS PICK UP 
 
         for (int i =0 ; i< bonuses.size(); i++)
         {
             if (distance(x,y,bonuses[i].x,bonuses[i].y) <=  10)
             {
                 
-                if (hpcurr + 20 < hpmax)
-                {
-                    hpcurr += 20;
-                }
-                else
-                {
-                    hpcurr = hpmax;
-                }
+                hero.bonusPickUp(bonuses[i]);
 
                 bonuses.erase(bonuses.begin() + i);
                 i--;
@@ -287,11 +292,13 @@ public:
         //ENEMIESMOVE  //zombie'de
         for (int i = 0; i < enemies.size(); ++i)
         {
-            double dirX =  x - enemies[i].x;
+     /*       double dirX =  x - enemies[i].x;
             double dirY =  y - enemies[i].y;
             double dist = sqrt((dirX * dirX) + (dirY * dirY));
             enemies[i].x += dirX / dist * enemies[i].speed * fElapsedTime;
             enemies[i].y += dirY / dist * enemies[i].speed * fElapsedTime;
+            */
+            
             if (enemies[i].hp <= 0)
             {
                 enemies.erase(enemies.begin() + i);

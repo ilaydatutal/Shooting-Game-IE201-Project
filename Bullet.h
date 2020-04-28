@@ -6,7 +6,8 @@ class Bullet: public NonLivingObject
 public:
     double damage;
 
-    Bullet(double xIn, double yIn, double dirXIn, double dirYIn, double speedIn, double damageIn);
+    Bullet(double x, double y, double speed, double dirX, double dirY, double damage);
     void hit(Zombie zombie);
+    void move(float fElapsedTime);
 };
 
