@@ -98,6 +98,7 @@ class ShootingGame : public olc::PixelGameEngine
     vector<shared_ptr<olc::Sprite>> levelSprites;
     shared_ptr<olc::Sprite> deadSprite;
     shared_ptr<olc::Sprite> zombieSprite;
+    Hero hero;
 
 
     int level;
@@ -121,7 +122,7 @@ class ShootingGame : public olc::PixelGameEngine
 public:
     bool OnUserCreate() //override
     {
-        Hero hero(ScreenWidth() / 2, ScreenHeight() / 2, 100, 100);
+        hero = Hero(ScreenWidth() / 2, ScreenHeight() / 2, 100, 100);
         manSprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
         deadSprite = make_shared<olc::Sprite>("Sprites/Dead.png");
         zombieSprite = make_shared<olc::Sprite>("Sprites/zombie.png");
@@ -129,7 +130,8 @@ public:
         
         /*x = ScreenWidth() / 2;
         y = ScreenHeight() / 2;
-        heroSpeed = 100;*/
+        heroSpeed = 100;
+        */
         
         spawnRate = 5; //zombie spawn rate
         spawnCD = 0;
