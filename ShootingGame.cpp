@@ -71,7 +71,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	if (spawnCooldown <= 0)
 	{
 		double degree = rand() * 360;
-		zombies.push_back(Zombie((cos(degree) * ScreenWidth()) + (ScreenWidth() / 2), (sin(degree) * ScreenHeight()) + (ScreenHeight() / 2), 50, 10, 10));
+		zombies.push_back(Zombie((cos(degree) * ScreenWidth()) + (ScreenWidth() / 2), (sin(degree) * ScreenHeight()) + (ScreenHeight() / 2), 50, 10, 10, 0, 2));
 		spawnCooldown = Zombie::spawnRate;
 	}
 	//ZOMBIE SPAWNS

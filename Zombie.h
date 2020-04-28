@@ -11,7 +11,7 @@ public:
 	static double spawnRate;
 
 	Zombie();
-	Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn);
+	Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn, double attackCD, double attackRate);
 	void attack(Hero hero, float elapsedTime);
 	void move(Hero hero, float fElapsedTime);
 };
