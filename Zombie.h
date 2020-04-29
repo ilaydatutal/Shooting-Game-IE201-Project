@@ -12,7 +12,7 @@ public:
 
 	Zombie();
 	Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn, double attackCD, double attackRate);
-	void attack(Hero hero, float elapsedTime);
+	void attack(Hero* hero);
 	void move(Hero hero, float fElapsedTime);
 };
 

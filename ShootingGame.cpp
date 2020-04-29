@@ -107,7 +107,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 		{
 			if (distance(bullets[i].objX, bullets[i].objY, zombies[j].objX, zombies[j].objY) < 10)
 			{
-				zombies[j].hpCurrent -= bullets[i].damage;
+				bullets[i].hit(&zombies[j]);
 				bullets.erase(bullets.begin() + i);
 				i--;
 				if (zombies[j].hpCurrent <= 0)
@@ -168,8 +168,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 
 		if ((distance(zombies[i].objX, zombies[i].objY, hero.objX, hero.objY) <= 8) && (zombies[i].attackCD <= 0))
 		{
-			hero.hpCurrent -= zombies[i].damage;
-			zombies[i].attackCD = zombies[i].attackrate;
+			zombies[i].attack(&hero);
 		}
 	}
 

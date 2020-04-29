@@ -12,12 +12,10 @@ Zombie::Zombie(double xIn, double yIn, double speedIn, double damageIn, double h
 	this->attackrate = attackRate;
 }
 
-void Zombie::attack(Hero hero, float fElapsedTime)
+void Zombie::attack(Hero* hero)
 {
-	this->attackCD -= fElapsedTime;
-	hero.hpCurrent -= this->damage;
+	hero->hpCurrent -= this->damage;
 	this->attackCD = this->attackrate;
-
 }
 void Zombie::move(Hero hero, float fElapsedTime) {
 	this->dirX = hero.objX - this->objX;

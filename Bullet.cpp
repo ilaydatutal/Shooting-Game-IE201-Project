@@ -11,8 +11,8 @@ Bullet::Bullet(double x, double y, double dirX, double dirY, double speed, doubl
 	this->damage = damage;
 }
 
-void Bullet::hit(Zombie zombie) {
-	zombie.hpCurrent -= this->damage;
+void Bullet::hit(Zombie* zombie) {
+	zombie->hpCurrent -= this->damage;
 }
 
 void Bullet::move(float fElapsedTime) {
