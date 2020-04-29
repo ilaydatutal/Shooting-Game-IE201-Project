@@ -8,7 +8,6 @@ ShootingGame::ShootingGame()
 
 bool ShootingGame::OnUserCreate()
 {
-
 	hero = Hero(ScreenWidth() / 2, ScreenHeight() / 2, 100, 100);
 	manSprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
 	deadSprite = make_shared<olc::Sprite>("Sprites/Dead.png");
@@ -16,16 +15,6 @@ bool ShootingGame::OnUserCreate()
 	bonusSprite = make_shared<olc::Sprite>("Sprites/firstaid.png");
 
 	spawnCooldown = 0;
-	/*x = ScreenWidth() / 2;
-	y = ScreenHeight() / 2;
-	heroSpeed = 100;
-	*/
-	/*
-	  spawnRate = 5; //zombie spawn rate
-	  spawnCD = 0;
-	  */
-	  /*  hpmax = 100;
-		hpcurr = 50;*/
 
 	gameTime = 0;
 	gameEnd = false;
@@ -97,25 +86,9 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 		hero.move(screenHeight, screenWidth, fElapsedTime, olc::A);
 	//UPDATE VARIABLES
 
-	////KEEP HERO IN WINDOW   // hero'da
-	//if (y <= 0) { y = 0; }
-	//if (x <= 0) { x = 0; }
-	//if (y >= ScreenHeight()-1) { y = ScreenHeight()-1; }
-	//if (x >= ScreenWidth()-1) { x = ScreenWidth()-1; }
-	////KEEP HERO IN WINDOW
-
-
 	//BULLETS
-
-
-
-	//bullet'da
 	for (int i = 0; i < bullets.size(); ++i)
 	{
-		/*
-		bullets[i].objX += bullets[i].dirX * bullets[i].speed * fElapsedTime;
-		bullets[i].objY += bullets[i].dirY * bullets[i].speed * fElapsedTime;
-		*/
 		bullets[i].move(fElapsedTime);
 
 		if (bullets[i].objX < 0 || bullets[i].objX > ScreenWidth() || bullets[i].objY < 0 || bullets[i].objY > ScreenHeight())
@@ -174,8 +147,6 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	}
 
 	//BONUS PICK UP
-
-
 
 	//ENEMIESMOVE  //zombie'de
 	for (int i = 0; i < zombies.size(); ++i)

@@ -5,17 +5,11 @@ Zombie::Zombie() :LivingObject()
 }
 Zombie::Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn, double attackCD, double attackRate) : LivingObject(xIn, yIn, speedIn, NULL, NULL) {
 
-	/*
-	this->objX = xIn;
-	this->objY = yIn;
-	this->speed = speedIn;
-	*/
 	this->damage = damageIn;
 	this->hpMax = hpIn;
 	this->hpCurrent = this->hpMax;
 	this->attackCD = attackCD;
 	this->attackrate = attackRate;
-	//this->sprite = make_shared<olc::Sprite>("Sprites/zombie.png");
 }
 
 void Zombie::attack(Hero hero, float fElapsedTime)

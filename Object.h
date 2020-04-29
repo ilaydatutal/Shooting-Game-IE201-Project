@@ -4,18 +4,15 @@ using namespace std;
 
 class Object
 {
-public :
+public:
 	double objX;
 	double objY;
 	double dirX;
 	double dirY;
 	double speed;
-	static shared_ptr<olc::Sprite> sprite;
 
 public:
 	Object();
 	Object(double x, double y, double speed, double dirX = NULL, double dirY = NULL);
-	
-
 };
 

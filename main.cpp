@@ -14,66 +14,6 @@
 
 using namespace std;
 
-
-
-
-//struct Bullet{
-//    double x;
-//    double y;
-//    double dirX;
-//    double dirY;
-//    double speed;
-//    double damage;
-//    Bullet(double xIn, double yIn, double dirXIn, double dirYIn, double speedIn, double damageIn)
-//    {
-//        x = xIn;
-//        y = yIn;
-//        dirX = dirXIn;
-//        dirY = dirYIn;
-//        speed = speedIn;
-//        damage = damageIn;
-//    }
-//};
-
-/*
-struct Bonus {
-	double x;
-	double y;
-
-	Bonus(double xIn, double yIn ) {
-
-		x = xIn;
-		y = yIn;
-	}
-
-};
-*/
-
-/*
-struct Enemy {
-	double x;
-	double y;
-	double speed;
-	double damage;
-	double hp;
-	double hpmax;
-	double attackCD;
-	double attackrate;
-
-	Enemy(double xIn, double yIn, double speedIn, double damageIn, double hpIn):attackCD(0),attackrate(2)
-	{
-		x = xIn;
-		y = yIn;
-		speed = speedIn;
-		damage = damageIn;
-		hpmax = hpIn;
-		hp = hpmax;
-	}
-};
-*/
-
-
-
 int main()
 {
 	ShootingGame demo;

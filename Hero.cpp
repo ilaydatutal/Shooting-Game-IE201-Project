@@ -6,8 +6,6 @@ Hero::Hero() :LivingObject()
 }
 
 Hero::Hero(double x, double y, double speed, double hpMax) : LivingObject(x, y, speed, hpMax, hpMax / 2) {
-
-	//this->sprite = make_shared<olc::Sprite>("Sprites/ManTrans.png");
 }
 
 void Hero::move(double screenHeight, double screenWidth, float fElapsedTime, olc::Key pressedKey) {
@@ -25,7 +23,6 @@ void Hero::move(double screenHeight, double screenWidth, float fElapsedTime, olc
 	if (this->objY >= screenHeight - 1) { this->objY = screenHeight - 1; }
 	if (this->objX >= screenWidth - 1) { this->objX = screenWidth - 1; }
 }
-
 
 void Hero::bonusPickUp(Bonus bonus) {
 	if (this->hpCurrent + bonus.amount < this->hpMax)
