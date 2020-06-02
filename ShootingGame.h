@@ -58,12 +58,17 @@ public:
 	ShootingGame();
 	bool OnUserCreate(); //override
 	
+	double timeTick(double gameTime, float fElapsedTime);
 
 	bool OnUserUpdate(float fElapsedTime); //override
 
 	void DrawHPBar(LivingObject livingObj);
 
 	double distance(double x1, double y1, double x2, double y2);
+	
+	bool isDead(LivingObject livingobj);
+
+	
 
 	Bullet shoot(Hero hero);
 	
