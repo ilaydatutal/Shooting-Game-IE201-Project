@@ -34,3 +34,13 @@ void Hero::bonusPickUp(Bonus bonus) {
 		this->hpCurrent = this->hpMax;
 	}
 }
+
+void Hero::Shield(float currentTime) {
+	double temp;
+	temp = hpCurrent;
+	int i;
+	for (i = 0; i < 5; i++) {
+		this->hpCurrent = temp;
+		Sleep(1000);
+	}
+}
