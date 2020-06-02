@@ -7,11 +7,14 @@ using namespace std;
 class Hero : public LivingObject
 {
 
-public:
+private:
 	Hero();
 	Hero(double x, double y, double speed, double hpMax);
+
+public:
 	void move(double screenHeight, double screenWidth, float fElapsedTime, olc::Key pressedKey);
 	void bonusPickUp(Bonus bonus);
+	void Shield(float currentTime);
 
 };
 

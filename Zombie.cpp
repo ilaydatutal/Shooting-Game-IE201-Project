@@ -17,6 +17,7 @@ void Zombie::attack(Hero* hero)
 	hero->hpCurrent -= this->damage;
 	this->attackCD = this->attackrate;
 }
+
 void Zombie::move(Hero hero, float fElapsedTime) {
 	this->dirX = hero.objX - this->objX;
 	this->dirY = hero.objY - this->objY;

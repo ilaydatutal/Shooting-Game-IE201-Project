@@ -40,27 +40,17 @@ class ShootingGame : public olc::PixelGameEngine
 	bool gameEnd;
 	double spawnCooldown;
 
-	/*
-	void DrawHPBar(int x, int y, int HPMax, int HPCurrent)
-	{
-		double ratio = (double)(HPCurrent) / (double)HPMax;
-		for (int i = x - 5; i < 5 + x; ++i)
-			if (i < x - 5 + ratio * 10)
-				DrawRect(i, y + 14, 1,1, olc::GREEN);
-			else
-				DrawRect(i, y + 14, 1,1, olc::RED);
-	}
-	*/
-
 
 
 public:
 	ShootingGame();
-	bool OnUserCreate(); //override
+	bool OnUserCreate();									//override
 	
 	double timeTick(double gameTime, float fElapsedTime);
 
-	bool OnUserUpdate(float fElapsedTime); //override
+	bool EndScreen(ShootingGame* game);
+
+	bool OnUserUpdate(float fElapsedTime);					//override
 
 	void DrawHPBar(LivingObject livingObj);
 
@@ -68,7 +58,11 @@ public:
 	
 	bool isDead(LivingObject livingobj);
 
-	
+	//bool checkCollision(Zombie zombie, Hero hero);			//polymorphism
+
+	//bool checkCollision(Zombie zombie, Bullet bullet);		//polymorphism
+
+	//bool checkCollision(Hero hero, Bonus bonus);			//polymorphism
 
 	Bullet shoot(Hero hero);
 	

@@ -25,9 +25,9 @@ void Hero::move(double screenHeight, double screenWidth, float fElapsedTime, olc
 }
 
 void Hero::bonusPickUp(Bonus bonus) {
-	if (this->hpCurrent + bonus.amount < this->hpMax)
+	if (this->hpCurrent + bonus.getAmount() < this->hpMax)
 	{
-		this->hpCurrent += bonus.amount;
+		this->hpCurrent += bonus.getAmount();
 	}
 	else
 	{

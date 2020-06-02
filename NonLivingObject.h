@@ -3,7 +3,7 @@
 using namespace std;
 class NonLivingObject: public Object
 {
-public:
+private:
 	NonLivingObject();
 	NonLivingObject(double x, double y, double speed, double dirX = NULL, double dirY = NULL);
 };

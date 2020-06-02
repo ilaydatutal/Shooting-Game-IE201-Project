@@ -27,30 +27,40 @@ bool ShootingGame::OnUserCreate()
 
 }
 
+double ShootingGame::timeTick(double gameTime, float fElapsedTime)
+{
+	gameTime += fElapsedTime;
+	return gameTime;
+}
+
+bool ShootingGame:: EndScreen(ShootingGame* game) {
+	DrawSprite(0, 0, deadSprite, 1);
+	DrawString(ScreenWidth() / 2 - 38, ScreenHeight() / 2 - 10, "GAME OVER", olc::DARK_RED);
+	DrawString(ScreenWidth() / 2 - 38, ScreenHeight() / 2, "Try again?", olc::BLACK);
+	DrawString(ScreenWidth() / 2 - 35, ScreenHeight() / 2 + 10, "Press Y", olc::BLACK);
+	DrawString(ScreenWidth() / 2 - 55, ScreenHeight() / 2 + 20, "Press N to exit", olc::BLACK);
+
+
+	if (GetKey(olc::Y).bPressed)
+	{
+		OnUserCreate();
+	}
+
+	if (GetKey(olc::Key::N).bPressed)
+		return false;
+
+	return true;
+}
+
 bool ShootingGame::OnUserUpdate(float fElapsedTime)
 {
 
 	if (gameEnd) {
-		DrawSprite(0, 0, deadSprite, 1);
-		DrawString(ScreenWidth() / 2 - 38, ScreenHeight() / 2 - 10, "GAME OVER", olc::DARK_RED);
-		DrawString(ScreenWidth() / 2 - 38, ScreenHeight() / 2, "Try again?", olc::BLACK);
-		DrawString(ScreenWidth() / 2 - 35, ScreenHeight() / 2 + 10, "Press Y", olc::BLACK);
-		DrawString(ScreenWidth() / 2 - 55, ScreenHeight() / 2 + 20, "Press N to exit", olc::BLACK);
-
-
-		if (GetKey(olc::Y).bPressed)
-		{
-			OnUserCreate();
-		}
-
-		if (GetKey(olc::Key::N).bPressed)
-			return false;
-
-		return true;
+		return EndScreen(this);
 	}
 
-
-	gameTime += fElapsedTime;
+	gameTime = timeTick(gameTime, fElapsedTime);
+	
 	level = int(gameTime / 10) % 7 + 1;
 
 
@@ -110,7 +120,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 				bullets[i].hit(&zombies[j]);
 				bullets.erase(bullets.begin() + i);
 				i--;
-				if (zombies[j].hpCurrent <= 0)
+				if (isDead(zombies[j])==true)
 				{
 					//RANDOM BONUS CREATION
 
@@ -153,7 +163,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	{
 		zombies[i].move(hero, fElapsedTime);
 
-		if (zombies[i].hpCurrent <= 0)
+		if (isDead(zombies[i])==true)
 		{
 			zombies.erase(zombies.begin() + i);
 			i--;
@@ -173,12 +183,11 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	}
 
 	//ENEMIESATTACK
-
 	//CHECKGAMEOVER
 
 
 	// If HP is less than 0 or if you press E end game
-	if (hero.hpCurrent <= 0 || GetKey(olc::E).bReleased)
+	if (isDead(hero) == true || GetKey(olc::E).bReleased)
 	{
 
 		for (int i = 0; i < zombies.size(); i++)
@@ -269,6 +278,44 @@ double ShootingGame::distance(double x1, double y1, double x2, double y2)
 {
 	return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
+
+bool ShootingGame::isDead(LivingObject livingobj)
+{
+	if (livingobj.hpCurrent <= 0) return true;
+	else return false;
+}
+
+
+
+//bool ShootingGame::checkCollision(Zombie zombie, Hero hero) {
+//
+//	double distance(double x1, double y1, double x2, double y2);
+//
+//	if ((distance(zombie.objX, zombie.objY, hero.objX, hero.objY) <= 8) && (zombie.attackCD <= 0)) {
+//		return true;
+//	}
+//
+//}
+//
+//bool ShootingGame::checkCollision(Zombie zombie, Bullet bullet) {
+//
+//	double distance(double x1, double y1, double x2, double y2);
+//
+//	if (distance(bullet.objX, bullet.objY, zombie.objX, zombie.objY) < 10) {
+//		return true;
+//	}
+//
+//}
+//
+//bool ShootingGame::checkCollision(Hero hero, Bonus bonus) {
+//
+//	double distance(double x1, double y1, double x2, double y2);
+//
+//	if (distance(hero.objX, hero.objY, bonus.objX, bonus.objY) <= 10) {
+//		return true;
+//	}
+//
+//}
 
 Bullet ShootingGame::shoot(Hero hero) {
 

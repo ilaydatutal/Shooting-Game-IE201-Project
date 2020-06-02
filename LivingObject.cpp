@@ -11,3 +11,24 @@ LivingObject::LivingObject(double x, double y, double speed, double hpMax, doubl
 	this->hpMax = hpMax;
 	this->hpCurrent = hpCurrent;
 }
+
+void LivingObject::sethpMax(double hpMaxIn)
+{
+	hpMax = hpMaxIn;
+}
+
+double LivingObject::gethpMax()
+{
+	return hpMax;
+}
+
+void LivingObject::sethpCurrent(double  hpCurrentIn)
+{
+	hpCurrent = hpCurrentIn;
+}
+
+double LivingObject::gethpCurrent()
+{
+	return  hpCurrent;
+}
+

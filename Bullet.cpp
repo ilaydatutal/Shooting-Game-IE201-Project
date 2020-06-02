@@ -11,6 +11,14 @@ Bullet::Bullet(double x, double y, double dirX, double dirY, double speed, doubl
 	this->damage = damage;
 }
 
+void Bullet::setDamage(double damageIn) {
+	damage = damageIn;
+}
+
+double Bullet::getDamage() {
+	return damage;
+}
+
 void Bullet::hit(Zombie* zombie) {
 	zombie->hpCurrent -= this->damage;
 }
