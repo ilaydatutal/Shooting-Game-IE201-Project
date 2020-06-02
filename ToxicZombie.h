@@ -5,12 +5,16 @@ using namespace std;
 
 class ToxicZombie : public Zombie
 {
-public :
+protected :
 	double timeActive;
-
+private:
 	ToxicZombie();
 	ToxicZombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn, double attackCD, double attackRate, double timeActive);
+public:
 	void poison(Hero* hero, double timeActive);
+	double gettimeActive();
+	void settimeActive(double timeActiveIn);
+
 
 };
 

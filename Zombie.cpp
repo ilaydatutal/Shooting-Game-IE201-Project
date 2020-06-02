@@ -1,5 +1,6 @@
 #include "Zombie.h"
 double Zombie::spawnRate = 5;
+
 Zombie::Zombie() :LivingObject()
 {
 }
@@ -14,15 +15,54 @@ Zombie::Zombie(double xIn, double yIn, double speedIn, double damageIn, double h
 
 void Zombie::attack(Hero* hero)
 {
-	hero->hpCurrent -= this->damage;
+	hero->gethpCurrent -= this->damage;
 	this->attackCD = this->attackrate;
 }
 
 void Zombie::move(Hero hero, float fElapsedTime) {
-	this->dirX = hero.objX - this->objX;
-	this->dirY = hero.objY - this->objY;
+	this->dirX = hero.getobjX() -this->objX;
+	this->dirY = hero.getobjY() - this->objY;
 	double dist = sqrt((dirX * dirX) + (dirY * dirY));
 	objX += dirX / dist * this->speed * fElapsedTime;
 	objY += dirY / dist * speed * fElapsedTime;
 
+}
+
+double Zombie::getdamage()
+{
+	return damage;
+}
+
+void Zombie::setdamage(double damageIn)
+{
+	damage = damageIn;
+}
+
+double Zombie::getattackCD()
+{
+	return attackCD;
+}
+
+void Zombie::setattackCD(double attackCDIn)
+{
+	attackCD = attackCDIn;
+}
+double Zombie::getattackrate()
+{
+	return attackrate;
+}
+
+void Zombie::setattackrate(double attackrateIn)
+{
+	attackrate = attackrateIn;
+}
+
+double Zombie::getspawnRate()
+{
+	return spawnRate;
+}
+
+void Zombie::setspawnRate(double spawnRateIn)
+{
+	spawnRate = spawnRateIn;
 }
