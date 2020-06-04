@@ -7,20 +7,23 @@
 #include "Bullet.h"
 #include "Bonus.h"
 #include "ArmorBonus.h"
+#include "Zombie.h"
+#include "ExplodingZombie.h"
 
 
 using namespace std;
 
 class ShootingGame : public olc::PixelGameEngine
 {
-	
+
 
 	shared_ptr<olc::Sprite> bonusSprite;
+	shared_ptr<olc::Sprite> armorSprite;
 	shared_ptr<olc::Sprite> manSprite;
 	vector<shared_ptr<olc::Sprite>> levelSprites;
 	shared_ptr<olc::Sprite> deadSprite;
 	shared_ptr<olc::Sprite> zombieSprite;
-	
+
 protected:
 	vector<Bullet> bullets;
 	vector<Zombie> zombies;
@@ -37,7 +40,7 @@ protected:
 public:
 	ShootingGame();
 	bool OnUserCreate();									//override
-	
+
 	double timeTick(double gameTime, float fElapsedTime);
 
 	bool EndScreen(ShootingGame* game);
@@ -47,12 +50,14 @@ public:
 	void DrawHPBar(LivingObject livingObj);
 
 	double distance(double x1, double y1, double x2, double y2);
-	
+
 	bool isDead(LivingObject livingobj);
 
-	bool checkCollision(Zombie* zombie, Hero* hero);			
+	bool checkCollision(Zombie* zombie, Hero* hero);
 
-	bool checkCollision(Zombie* zombie, Bullet* bullet);		
+	bool checkCollision(Zombie* zombie, Hero* hero, double dist);
+
+	bool checkCollision(Zombie* zombie, Bullet* bullet);
 
 	bool checkCollision(Hero* hero, Bonus* bonus);
 

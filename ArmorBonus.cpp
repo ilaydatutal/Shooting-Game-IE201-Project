@@ -6,10 +6,10 @@ ArmorBonus::ArmorBonus() :Bonus() {
 
 } 
 
-ArmorBonus::ArmorBonus(double xIn, double yIn, double amount) :Bonus(xIn, yIn, 0) {
+ArmorBonus::ArmorBonus(double xIn, double yIn) :Bonus(xIn, yIn, -1) {
 	
 }
 
-void ArmorBonus::bonusPicked(Hero* hero, float fElapsedTime) { //time içeren method??
-	hero->haveShield();
+void ArmorBonus::bonusPicked(Hero* hero) { 
+	hero->activateArmor();
 }

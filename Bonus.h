@@ -8,6 +8,7 @@ protected:
 public:
 	Bonus();
 	Bonus(double xIn, double yIn, double amount);
+	void HereIsAmount(double* amount);
 	virtual void bonusPicked(Hero* hero);
 };
 

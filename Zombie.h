@@ -14,7 +14,6 @@ public:
 	Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn, double attackCD, double attackRate);
 	virtual void attack(Hero* hero);
 	void move(Hero* hero, float fElapsedTime);
-	void decreaseHP(double quantity);
 	void HereIsSpawnRate(double* sprate);
 	void HereIsAttackCooldown(double* cooldown);
 };

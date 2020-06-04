@@ -22,5 +22,9 @@ void LivingObject::HereIshpMax(double* hp)
 	*hp = hpMax;
 }
 
+void LivingObject::decreaseHP(double quantity) {
+	hpCurrent -= quantity;
+}
+
 
 

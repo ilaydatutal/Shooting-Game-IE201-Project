@@ -15,6 +15,7 @@ protected:
 public:
 	void HereIshpCurrent(double* hp);
 	void HereIshpMax(double* hp);
+	void decreaseHP(double quantity);
 
 };
 

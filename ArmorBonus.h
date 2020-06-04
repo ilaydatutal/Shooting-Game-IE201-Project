@@ -5,7 +5,6 @@ class ArmorBonus : public Bonus
 {
 public:
 	ArmorBonus();
-	ArmorBonus(double xIn, double yIn, double amount);
-	void bonusPicked(Hero* hero, float fElapsedTime);
-
+	ArmorBonus(double xIn, double yIn);
+	void bonusPicked(Hero* hero) override;
 };
