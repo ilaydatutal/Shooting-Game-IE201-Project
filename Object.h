@@ -10,13 +10,11 @@ protected:
 	double dirX;
 	double dirY;
 	double speed;
-
-private:
 	Object();
 	Object(double x, double y, double speed, double dirX = NULL, double dirY = NULL);
 
 public:
-	void HereIsObjX(double objX);
-	void HereIsObjY(double objY);
+	void HereIsObjX(double* objX);
+	void HereIsObjY(double* objY);
 };
 

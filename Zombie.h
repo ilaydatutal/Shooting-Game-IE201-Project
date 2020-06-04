@@ -9,14 +9,13 @@ protected:
 	double attackCD;
 	double attackrate;
 	static double spawnRate;
-private:
+public:
 	Zombie();
 	Zombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn, double attackCD, double attackRate);
-public:
 	virtual void attack(Hero* hero);
 	void move(Hero* hero, float fElapsedTime);
 	void decreaseHP(double quantity);
-	void HereIsSpawnRate(double sprate);
-	void HereIsAttackCooldown(double cooldown);
+	void HereIsSpawnRate(double* sprate);
+	void HereIsAttackCooldown(double* cooldown);
 };
 

@@ -2,7 +2,7 @@
 using namespace std;
 
 
-ExplodingZombie::ExplodingZombie() : Zombie() {
+ExplodingZombie::ExplodingZombie() :Zombie() {
 
 }
 

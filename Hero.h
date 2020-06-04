@@ -1,18 +1,16 @@
 #pragma once
 #include "LivingObject.h"
-#include "Bonus.h"
-#include "Zombie.h"
 
 using namespace std;
 
 class Hero : public LivingObject
 {
-private:
+protected:
 	bool shieldActive = false;
-	Hero();
-	Hero(double x, double y, double speed, double hpMax);
 
 public:
+	Hero();
+	Hero(double x, double y, double speed, double hpMax);
 	void increaseHp(double quantity);
 	void decreaseHp(double quantity);
 	void haveShield();

@@ -65,8 +65,8 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	//ZOMBIE SPAWNS   
 	spawnCooldown -= fElapsedTime;
 	Zombie zombietemp;
-	double zombieSpawnRate;
-	zombietemp.HereIsSpawnRate(zombieSpawnRate);
+	double zombieSpawnRate = NULL;
+	zombietemp.HereIsSpawnRate(&zombieSpawnRate);
 	if (spawnCooldown <= 0)
 	{
 		double degree = rand() * 360;
@@ -101,9 +101,9 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	for (int i = 0; i < bullets.size(); ++i)
 	{
 		bullets[i].move(fElapsedTime);
-		double x, y;
-		bullets[i].HereIsObjX(x);
-		bullets[i].HereIsObjY(y);
+		double x = NULL, y = NULL;
+		bullets[i].HereIsObjX(&x);
+		bullets[i].HereIsObjY(&y);
 
 		if (x < 0 || x > ScreenWidth() || y < 0 || y > ScreenHeight())
 		{
@@ -126,9 +126,9 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 				if (isDead(zombies[j])==true)
 				{
 					//RANDOM BONUS CREATION
-					double zx, zy;
-						zombies[j].HereIsObjX(zx);
-						zombies[j].HereIsObjY(zy);
+					double zx = NULL, zy = NULL;
+						zombies[j].HereIsObjX(&zx);
+						zombies[j].HereIsObjY(&zy);
 					if (rand() % 5 < 1) {
 						bonuses.push_back(Bonus(zx, zy, 20));
 					}
@@ -179,13 +179,13 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	//ENEMIESATTACK
 	for (int i = 0; i < zombies.size(); i++)
 	{
-		double cooldown;
-		zombies[i].HereIsAttackCooldown(cooldown);
+		double cooldown = NULL;
+		zombies[i].HereIsAttackCooldown(&cooldown);
 		cooldown -= fElapsedTime;
 
 		if ((checkCollision(&zombies[i], &hero)) && (cooldown <= 0))
 		{
-			zombies[i].attack(&hero);
+  			zombies[i].attack(&hero);
 		}
 	}
 
@@ -229,9 +229,9 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 //DRAWING
 
 //THE PLAYER
-	double hx, hy;
-	hero.HereIsObjX(hx);
-	hero.HereIsObjY(hy);
+	double hx = NULL, hy = NULL;
+	hero.HereIsObjX(&hx);
+	hero.HereIsObjY(&hy);
 	Clear(olc::BLACK);
 	DrawSprite(0, 0, levelSprites[level - 1], 1);
 	SetPixelMode(olc::Pixel::ALPHA);
@@ -250,17 +250,17 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	//DRAW BULLETS
 	
 	for (auto a : bullets) {
-		double bx, by;
-		a.HereIsObjX(bx);
-		a.HereIsObjY(by);
+		double bx = NULL, by = NULL;
+		a.HereIsObjX(&bx);
+		a.HereIsObjY(&by);
 		DrawCircle(bx, by, 1, olc::YELLOW);
 	}
 
 	//DRAW ENEMIES
 	for (auto a : zombies) {
-		double zx, zy;
-		a.HereIsObjX(zx);
-		a.HereIsObjY(zy);
+		double zx = NULL, zy = NULL;
+		a.HereIsObjX(&zx);
+		a.HereIsObjY(&zy);
 		DrawSprite(zx - 12, zy - 12, zombieSprite, 1);
 		DrawCircle(zx, zy, 1, olc::RED);
 		DrawHPBar(a);
@@ -268,9 +268,9 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 
 	//DRAW BONUSES
 	for (auto a : bonuses){
-		double bx, by;
-		a.HereIsObjX(bx);
-		a.HereIsObjY(by);
+		double bx = NULL, by = NULL;
+		a.HereIsObjX(&bx);
+		a.HereIsObjY(&by);
 		DrawSprite(bx - 10, by - 10, bonusSprite, 1);
 	}
 
@@ -283,11 +283,11 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 
 void ShootingGame::DrawHPBar(LivingObject livingObj)
 {
-	double lx, ly, lHpC, lHpM;
-	livingObj.HereIsObjX(lx);
-	livingObj.HereIsObjY(ly);
-	livingObj.HereIshpCurrent(lHpC);
-	livingObj.HereIshpMax(lHpM);
+	double lx = NULL, ly = NULL, lHpC = NULL, lHpM = NULL;
+	livingObj.HereIsObjX(&lx);
+	livingObj.HereIsObjY(&ly);
+	livingObj.HereIshpCurrent(&lHpC);
+	livingObj.HereIshpMax(&lHpM);
 
 	double ratio = (double)(lHpC) / (double)lHpM;
 	for (int i = lx - 5; i < 5 + lx; ++i)
@@ -306,8 +306,8 @@ double ShootingGame::distance(double x1, double y1, double x2, double y2)
 
 bool ShootingGame::isDead(LivingObject livingobj)
 {
-	double hpC;
-	livingobj.HereIshpCurrent(hpC);
+	double hpC = NULL;
+	livingobj.HereIshpCurrent(&hpC);
 	if (hpC <= 0) return true;
 	else return false;
 }
@@ -316,11 +316,11 @@ bool ShootingGame::isDead(LivingObject livingobj)
 
 bool ShootingGame::checkCollision(Zombie* zombie, Hero* hero) {
 	
-	double zx, zy, hx, hy;
-	zombie->HereIsObjX(zx);
-	zombie->HereIsObjY(zy);
-	hero->HereIsObjX(hx);
-	hero->HereIsObjY(hy);
+	double zx = NULL, zy = NULL, hx = NULL, hy = NULL;
+	zombie->HereIsObjX(&zx);
+	zombie->HereIsObjY(&zy);
+	hero->HereIsObjX(&hx);
+	hero->HereIsObjY(&hy);
 
 	if ((distance(hx,hy,zx,zy) <= 8)) {
 		return true;
@@ -330,11 +330,11 @@ bool ShootingGame::checkCollision(Zombie* zombie, Hero* hero) {
 
 bool ShootingGame::checkCollision(Zombie* zombie, Bullet* bullet) {
 	
-	double zx, zy, bx, by;
-	zombie->HereIsObjX(zx);
-	zombie->HereIsObjY(zy);
-	bullet->HereIsObjX(bx);
-	bullet->HereIsObjY(by);
+	double zx = NULL, zy = NULL, bx = NULL, by = NULL;
+	zombie->HereIsObjX(&zx);
+	zombie->HereIsObjY(&zy);
+	bullet->HereIsObjX(&bx);
+	bullet->HereIsObjY(&by);
 	
 	if (distance(bx, by, zx, zy) < 10) {
 		return true;
@@ -343,20 +343,20 @@ bool ShootingGame::checkCollision(Zombie* zombie, Bullet* bullet) {
 }
 
 bool ShootingGame::checkCollision(Hero* hero, Bonus* bonus) {
-	double hx, hy, bx, by;
-	hero->HereIsObjX(hx);
-	hero->HereIsObjY(hy);
-	bonus->HereIsObjX(bx);
-	bonus->HereIsObjY(by);
+	double hx = NULL, hy = NULL, bx = NULL, by = NULL;
+	hero->HereIsObjX(&hx);
+	hero->HereIsObjY(&hy);
+	bonus->HereIsObjX(&bx);
+	bonus->HereIsObjY(&by);
 	if (distance(hx, hy, bx, by) <= 10) {
 		return true;
 	}
 }
 
 Bullet ShootingGame::shoot(Hero* hero) {
-	double hx, hy;
-	hero->HereIsObjX(hx);
-	hero->HereIsObjY(hy);
+	double hx = NULL, hy = NULL;
+	hero->HereIsObjX(&hx);
+	hero->HereIsObjY(&hy);
 
  	double dirX = GetMouseX() - hx;
 	double dirY = GetMouseY() - hy;

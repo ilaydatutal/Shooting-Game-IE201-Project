@@ -20,10 +20,10 @@ void Zombie::attack(Hero* hero)
 }
 
 void Zombie::move(Hero* hero, float fElapsedTime) { 
-	double heroObjX;
-	hero->HereIsObjX(heroObjX);
-	double heroObjY;
-	hero->HereIsObjY(heroObjY);
+	double heroObjX = NULL;
+	hero->HereIsObjX(&heroObjX);
+	double heroObjY = NULL;
+	hero->HereIsObjY(&heroObjY);
 	this->dirX = heroObjX - this->objX;
 	this->dirY = heroObjY - this->objY;
 	double dist = sqrt((dirX * dirX) + (dirY * dirY));
@@ -36,12 +36,12 @@ void Zombie::decreaseHP(double quantity) {
 	hpCurrent -= quantity;
 }
 
-void Zombie::HereIsSpawnRate(double sprate)
+void Zombie::HereIsSpawnRate(double* sprate)
 {
-	sprate = spawnRate;
+	*sprate = spawnRate;
 }
 
-void Zombie::HereIsAttackCooldown(double cooldown)
+void Zombie::HereIsAttackCooldown(double* cooldown)
 {
-	cooldown = attackCD;
+	*cooldown = attackCD;
 }

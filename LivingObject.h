@@ -9,14 +9,12 @@ class LivingObject :
 protected:
 	double hpMax;
 	double hpCurrent;
-
-private:
 	LivingObject();
 	LivingObject(double x, double y, double speed, double hpMax, double hpCurrent, double dirX = NULL, double dirY = NULL);
 
 public:
-	void HereIshpCurrent(double hp);
-	void HereIshpMax(double hp);
+	void HereIshpCurrent(double* hp);
+	void HereIshpMax(double* hp);
 
 };
 

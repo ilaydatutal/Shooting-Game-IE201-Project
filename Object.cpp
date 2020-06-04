@@ -13,11 +13,11 @@ Object::Object(double x, double y, double speed, double dirX, double dirY) {
 	this->dirY = dirY;
 }
 
-void Object::HereIsObjX(double objX)
+void Object::HereIsObjX(double* objX)
 {
-	objX = this->objX;
+	*objX = this->objX;
 }
-void Object::HereIsObjY(double objY)
+void Object::HereIsObjY(double* objY)
 {
-	objY = this->objY;
+	*objY = this->objY;
 }

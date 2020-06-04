@@ -12,14 +12,14 @@ LivingObject::LivingObject(double x, double y, double speed, double hpMax, doubl
 	this->hpCurrent = hpCurrent;
 }
 
-void LivingObject::HereIshpCurrent(double hp)
+void LivingObject::HereIshpCurrent(double* hp)
 {
-	hp = hpCurrent;
+	*hp = hpCurrent;
 }
 
-void LivingObject::HereIshpMax(double hp)
+void LivingObject::HereIshpMax(double* hp)
 {
-	hp = hpMax;
+	*hp = hpMax;
 }
 
 
