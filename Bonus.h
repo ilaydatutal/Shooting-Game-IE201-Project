@@ -10,7 +10,6 @@ private:
 	Bonus(double xIn, double yIn, double amount);
 
 public:
-	void setAmount(double amountIn);
-	double getAmount();
+	virtual void bonusPicked(Hero* hero);
 };
 

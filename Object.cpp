@@ -15,7 +15,7 @@ Object::Object(double x, double y, double speed, double dirX, double dirY) {
 
 void Object::setobjX(double objXIn) {
 	objX = objXIn;
-} 
+}
 
 double Object::getobjX() {
 	return objX;
@@ -53,6 +53,11 @@ double Object::getSpeed() {
 	return speed;
 }
 
-
-
-
+void Object::HereIsObjX(double objX)
+{
+	objX = this->objX;
+}
+void Object::HereIsObjY(double objY)
+{
+	objY = this->objY;
+}

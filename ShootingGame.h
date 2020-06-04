@@ -6,23 +6,14 @@
 #include "Hero.h"
 #include "Bullet.h"
 #include "Bonus.h"
+#include "ArmorBonus.h"
+
 
 using namespace std;
 
 class ShootingGame : public olc::PixelGameEngine
 {
-	/*
-	double x;
-	double y;
-	double heroSpeed;
-	double hpmax;
-	double hpcurr;
-	double spawnRate;
-	double spawnCD;
-	*/
-
-
-
+	
 	vector<Bullet> bullets;
 	vector<Zombie> zombies;
 	vector<Bonus> bonuses;
@@ -58,15 +49,13 @@ public:
 	
 	bool isDead(LivingObject livingobj);
 
-	//bool checkCollision(Zombie zombie, Hero hero);			//polymorphism
+	bool checkCollision(Zombie* zombie, Hero* hero);			
 
-	//bool checkCollision(Zombie zombie, Bullet bullet);		//polymorphism
+	bool checkCollision(Zombie* zombie, Bullet* bullet);		
 
-	//bool checkCollision(Hero hero, Bonus bonus);			//polymorphism
+	bool checkCollision(Hero* hero, Bonus* bonus);
 
-	Bullet shoot(Hero hero);
-	
-
+	Bullet shoot(Hero* hero);
 
 };
 

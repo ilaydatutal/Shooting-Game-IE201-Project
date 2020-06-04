@@ -48,9 +48,6 @@
     <ClCompile Include="ToxicZombie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NormalZombie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ExplodingZombie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,9 +87,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ToxicZombie.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalZombie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ExplodingZombie.h">

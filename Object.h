@@ -18,6 +18,8 @@ private:
 public:
 	void setobjX(double objXIn);
 	double getobjX();
+	void HereIsObjX(double objX);
+	void HereIsObjY(double objY);
 	void setobjY(double objYIn);
 	double getobjY();
 	void setSpeed(double dirXIn);

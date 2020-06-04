@@ -1,16 +1,16 @@
 #include "ArmorBonus.h"
+#include "Bonus.h"
 
 using namespace std;
 
-bool isActive;
-int ActiveTime;
-ArmorBonus::ArmorBonus() :NonLivingObject() {
+ArmorBonus::ArmorBonus() :Bonus() {
 
+} 
+
+ArmorBonus::ArmorBonus(double xIn, double yIn, double amount) :Bonus(xIn, yIn, 0) {
+	
 }
 
-ArmorBonus::ArmorBonus(double xIn, double yIn) : NonLivingObject(xIn, yIn, 0) {
-	this->objX = xIn;
-	this->objY = yIn;
-	isActive = false;
-	ActiveTime = 0;
+void ArmorBonus::bonusPicked(Hero* hero) { //time içeren method??
+	hero->haveShield();
 }

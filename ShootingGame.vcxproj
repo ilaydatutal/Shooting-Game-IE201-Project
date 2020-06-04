@@ -131,7 +131,6 @@
     <ClCompile Include="LivingObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NonLivingObject.cpp" />
-    <ClCompile Include="NormalZombie.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="olcSimpleEngine.cpp" />
     <ClCompile Include="ShootingGame.cpp" />
@@ -146,7 +145,6 @@
     <ClInclude Include="Hero.h" />
     <ClInclude Include="LivingObject.h" />
     <ClInclude Include="NonLivingObject.h" />
-    <ClInclude Include="NormalZombie.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="olcPGEX_Graphics2D.h" />
     <ClInclude Include="olcSimpleEngine.h" />

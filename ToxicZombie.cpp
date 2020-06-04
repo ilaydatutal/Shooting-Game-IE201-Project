@@ -2,9 +2,6 @@
 #include "Zombie.h"
 #include "windows.h"
 
-
-
-
 ToxicZombie::ToxicZombie() :Zombie()
 {
 }
@@ -14,27 +11,17 @@ ToxicZombie :: ToxicZombie(double xIn, double yIn, double speedIn, double damage
 	this->timeActive = timeActive;
 }
 
-void ToxicZombie::poison(Hero* hero, double currentTime)
+void ToxicZombie::attack(Hero* hero, double currentTime)		//time içeren methodlar?
 {
-
-	hero->gethpCurrent -= this->damage;
+	hero->decreaseHp(damage);
 	this->attackCD = this->attackrate;
 	int i;
 	for (i = currentTime; i < currentTime + 10; i++) {
-		hero->gethpCurrent = hero->gethpCurrent - 1;
+		hero->gethpCurrent = hero->gethpCurrent - 1;		//getterlar çýkarýlacak burada
 		Sleep(1000);
 	};
 }
 		
-double ToxicZombie::gettimeActive()
-{
-		return timeActive;
-}
-
-void ToxicZombie::settimeActive(double timeActiveIn) 
-{
-		timeActive = timeActiveIn;
-}
 	
 
 

@@ -15,54 +15,33 @@ Zombie::Zombie(double xIn, double yIn, double speedIn, double damageIn, double h
 
 void Zombie::attack(Hero* hero)
 {
-	hero->gethpCurrent -= this->damage;
-	this->attackCD = this->attackrate;
+	hero->decreaseHp(damage);
+	this->attackCD = this->attackrate; 
 }
 
-void Zombie::move(Hero hero, float fElapsedTime) {
-	this->dirX = hero.getobjX() -this->objX;
-	this->dirY = hero.getobjY() - this->objY;
+void Zombie::move(Hero* hero, float fElapsedTime) { 
+	double heroObjX;
+	hero->HereIsObjX(heroObjX);
+	double heroObjY;
+	hero->HereIsObjY(heroObjY);
+	this->dirX = heroObjX - this->objX;
+	this->dirY = heroObjY - this->objY;
 	double dist = sqrt((dirX * dirX) + (dirY * dirY));
-	objX += dirX / dist * this->speed * fElapsedTime;
+	objX += dirX / dist * speed * fElapsedTime;
 	objY += dirY / dist * speed * fElapsedTime;
 
 }
 
-double Zombie::getdamage()
-{
-	return damage;
+void Zombie::decreaseHP(double quantity) {
+	hpCurrent -= quantity;
 }
 
-void Zombie::setdamage(double damageIn)
+void Zombie::HereIsSpawnRate(double sprate)
 {
-	damage = damageIn;
+	sprate = spawnRate;
 }
 
-double Zombie::getattackCD()
+void Zombie::HereIsAttackCooldown(double cooldown)
 {
-	return attackCD;
-}
-
-void Zombie::setattackCD(double attackCDIn)
-{
-	attackCD = attackCDIn;
-}
-double Zombie::getattackrate()
-{
-	return attackrate;
-}
-
-void Zombie::setattackrate(double attackrateIn)
-{
-	attackrate = attackrateIn;
-}
-
-double Zombie::getspawnRate()
-{
-	return spawnRate;
-}
-
-void Zombie::setspawnRate(double spawnRateIn)
-{
-	spawnRate = spawnRateIn;
+	cooldown = attackCD;
 }

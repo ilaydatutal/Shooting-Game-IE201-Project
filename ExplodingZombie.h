@@ -10,8 +10,7 @@ private:
 	ExplodingZombie(double xIn, double yIn, double speedIn, double damageIn, double hpIn, double attackCD, double attackRate);
 
 public:
-	void setSpeed(double speedIn);
-	double getSpeed();
-	void explode(LivingObject livingCreature);
+	
+	void attack(Hero* hero, Zombie* zombie);
 };
 

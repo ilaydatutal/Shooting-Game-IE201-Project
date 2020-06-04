@@ -12,23 +12,15 @@ LivingObject::LivingObject(double x, double y, double speed, double hpMax, doubl
 	this->hpCurrent = hpCurrent;
 }
 
-void LivingObject::sethpMax(double hpMaxIn)
+void LivingObject::HereIshpCurrent(double hp)
 {
-	hpMax = hpMaxIn;
+	hp = hpCurrent;
 }
 
-double LivingObject::gethpMax()
+void LivingObject::HereIshpMax(double hp)
 {
-	return hpMax;
+	hp = hpMax;
 }
 
-void LivingObject::sethpCurrent(double  hpCurrentIn)
-{
-	hpCurrent = hpCurrentIn;
-}
 
-double LivingObject::gethpCurrent()
-{
-	return  hpCurrent;
-}
 

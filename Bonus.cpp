@@ -1,4 +1,5 @@
 #include "Bonus.h"
+#include "Hero.h"
 
 Bonus::Bonus():NonLivingObject()
 {
@@ -9,12 +10,6 @@ Bonus::Bonus(double xIn, double yIn, double amount) : NonLivingObject(xIn, yIn, 
 	this->amount = amount;
 }
 
-void Bonus::setAmount(double amountIn) 
-{
-	amount = amountIn;
-}
-
-double Bonus::getAmount() 
-{
-	return amount;
+void Bonus::bonusPicked(Hero* hero) {
+	hero->increaseHp(amount);
 }

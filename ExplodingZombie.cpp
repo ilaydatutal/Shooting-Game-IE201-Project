@@ -10,15 +10,11 @@ ExplodingZombie::ExplodingZombie(double xIn, double yIn, double speedIn, double 
 	this->speed = speedIn / 4;
 }
 
-void ExplodingZombie::setSpeed(double speedIn) {
-	speed = speedIn;
-}
 
-double ExplodingZombie::getSpeed() {
-	return speed;
-}
-
-void ExplodingZombie::explode(LivingObject livingCreature) {
+void ExplodingZombie::attack(Hero* hero, Zombie* zombie) {
 		
-	livingCreature.hpCurrent -= this->damage;
+	hero->decreaseHp(3*damage);
+	zombie->decreaseHP(3*damage);
+	hpCurrent = 0;
+
 }

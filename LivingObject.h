@@ -15,10 +15,8 @@ private:
 	LivingObject(double x, double y, double speed, double hpMax, double hpCurrent, double dirX = NULL, double dirY = NULL);
 
 public:
-	void sethpMax(double hpMaxIn);
-	double gethpMax();
-	void sethpCurrent(double  hpCurrentIn);
-	double gethpCurrent();
+	void HereIshpCurrent(double hp);
+	void HereIshpMax(double hp);
 
 };
 
