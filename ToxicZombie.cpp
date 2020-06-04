@@ -13,11 +13,13 @@ ToxicZombie :: ToxicZombie(double xIn, double yIn, double speedIn, double damage
 
 void ToxicZombie::attack(Hero* hero, double currentTime)		//time içeren methodlar?
 {
+	double herohp;
+	hero->HereIshpCurrent(herohp);
 	hero->decreaseHp(damage);
 	this->attackCD = this->attackrate;
 	int i;
 	for (i = currentTime; i < currentTime + 10; i++) {
-		hero->gethpCurrent = hero->gethpCurrent - 1;		//getterlar çýkarýlacak burada
+		herohp = herohp - 1;
 		Sleep(1000);
 	};
 }

@@ -79,7 +79,7 @@ bool ShootingGame::OnUserUpdate(float fElapsedTime)
 	//SHOOTING  //hero'da
 	if (GetKey(olc::SPACE).bPressed)
 	{
-		bullets.push_back(shoot(hero));
+		bullets.push_back(shoot(&hero));
 	}
 	//SHOOTING
 

@@ -16,19 +16,7 @@ private:
 	Object(double x, double y, double speed, double dirX = NULL, double dirY = NULL);
 
 public:
-	void setobjX(double objXIn);
-	double getobjX();
 	void HereIsObjX(double objX);
 	void HereIsObjY(double objY);
-	void setobjY(double objYIn);
-	double getobjY();
-	void setSpeed(double dirXIn);
-	double getdirX();
-	void setdirY(double dirYIn);
-	double getdirY();
-	void setSpeed(double speedIn);
-	double getSpeed();
-
-
 };
 

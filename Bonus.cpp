@@ -1,12 +1,10 @@
 #include "Bonus.h"
 #include "Hero.h"
 
-Bonus::Bonus():NonLivingObject()
-{
+Bonus::Bonus():NonLivingObject(){
 }
 
-Bonus::Bonus(double xIn, double yIn, double amount) : NonLivingObject(xIn, yIn, 0) 
-{
+Bonus::Bonus(double xIn, double yIn, double amount) : NonLivingObject(xIn, yIn, 0){
 	this->amount = amount;
 }
 

@@ -14,17 +14,18 @@ using namespace std;
 class ShootingGame : public olc::PixelGameEngine
 {
 	
-	vector<Bullet> bullets;
-	vector<Zombie> zombies;
-	vector<Bonus> bonuses;
 
 	shared_ptr<olc::Sprite> bonusSprite;
 	shared_ptr<olc::Sprite> manSprite;
 	vector<shared_ptr<olc::Sprite>> levelSprites;
 	shared_ptr<olc::Sprite> deadSprite;
 	shared_ptr<olc::Sprite> zombieSprite;
+	
+protected:
+	vector<Bullet> bullets;
+	vector<Zombie> zombies;
+	vector<Bonus> bonuses;
 	Hero hero;
-
 
 	int level;
 	double gameTime;
